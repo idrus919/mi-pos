@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mi_pos/pages/main/menu.dart';
-import 'package:mi_pos/pages/main/order.dart';
+import 'package:mi_pos/pages/menu.dart';
+import 'package:mi_pos/pages/order.dart';
 import 'package:mi_pos/themes.dart';
 
 class MainPage extends StatelessWidget {

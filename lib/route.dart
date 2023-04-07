@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:mi_pos/pages/main/index.dart';
+import 'package:mi_pos/pages/index.dart';
 
 abstract class Paths {
   static const main = '/';
