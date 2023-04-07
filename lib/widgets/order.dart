@@ -14,7 +14,6 @@ class OrderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final price = order?.price ?? '0';
-    final count = order?.count ?? 0;
     return Padding(
       padding: insetSymmetric(16, 12),
       child: Row(
@@ -57,59 +56,77 @@ class OrderWidget extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: whiteColor,
-              border: Border.all(color: primaryColor),
-              borderRadius: borderRadius(5),
-            ),
-            child: InkWellWidget(
-              padding: insetSymmetric(12, 8),
-              radius: borderRadius(5),
-              onTap: sub,
-              child: Text(
-                '-',
-                style: Get.textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  height: 0.8,
-                  color: primaryColor,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 36,
-            child: Center(
-              child: Text(
-                count.toString(),
-                style: Get.textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: primaryColor,
-              border: Border.all(color: primaryColor),
-              borderRadius: borderRadius(5),
-            ),
-            child: InkWellWidget(
-              padding: insetSymmetric(12, 8),
-              radius: borderRadius(5),
-              onTap: add,
-              child: Text(
-                '+',
-                style: Get.textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  height: 0.8,
-                  color: whiteColor,
-                ),
-              ),
-            ),
-          ),
+          _buildTailing,
         ],
       ),
+    );
+  }
+
+  Widget get _buildTailing {
+    final count = order?.count ?? 0;
+    if (add == null && sub == null) {
+      return Text(
+        'x$count',
+        style: Get.textTheme.bodyMedium?.copyWith(
+          fontWeight: FontWeight.w600,
+        ),
+      );
+    }
+
+    return Row(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: whiteColor,
+            border: Border.all(color: primaryColor),
+            borderRadius: borderRadius(5),
+          ),
+          child: InkWellWidget(
+            padding: insetSymmetric(12, 8),
+            radius: borderRadius(5),
+            onTap: sub,
+            child: Text(
+              '-',
+              style: Get.textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+                height: 0.8,
+                color: primaryColor,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          width: 36,
+          child: Center(
+            child: Text(
+              count.toString(),
+              style: Get.textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+            color: primaryColor,
+            border: Border.all(color: primaryColor),
+            borderRadius: borderRadius(5),
+          ),
+          child: InkWellWidget(
+            padding: insetSymmetric(12, 8),
+            radius: borderRadius(5),
+            onTap: add,
+            child: Text(
+              '+',
+              style: Get.textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+                height: 0.8,
+                color: whiteColor,
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 }

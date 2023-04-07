@@ -36,6 +36,7 @@ class OrderSection extends StatelessWidget {
     final controller = MainController.find;
     return Obx(() {
       final total = double.parse('${controller.totalCharge}');
+      final enable = controller.orders.isNotEmpty;
       return Container(
         padding: inset(),
         decoration: const BoxDecoration(
@@ -86,7 +87,7 @@ class OrderSection extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: enable ? controller.charge : null,
               child: const Text('Charge'),
             ),
           ],

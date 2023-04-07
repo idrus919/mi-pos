@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:mi_pos/models/menu.dart';
+import 'package:mi_pos/pages/charge.dart';
 import 'package:mi_pos/services/data.dart';
 
 class MainController extends GetxController {
@@ -77,5 +78,13 @@ class MainController extends GetxController {
 
   void show() {
     expand.value = !expand.value;
+  }
+
+  void charge() {
+    Get.bottomSheet(
+      ChargePage(orders: orders),
+      useRootNavigator: true,
+      isScrollControlled: true,
+    );
   }
 }
