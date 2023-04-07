@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:mi_pos/controllers/index.dart';
+import 'package:mi_pos/controller.dart';
 import 'package:mi_pos/route.dart';
 import 'package:mi_pos/themes.dart';
 
