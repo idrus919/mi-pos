@@ -87,7 +87,7 @@ SizedBox width([double? size]) {
 
 ButtonStyle get elevatedButtonStyle {
   return ElevatedButton.styleFrom(
-    padding: insetSymmetric(16, 12),
+    padding: insetSymmetric(16, 10),
     backgroundColor: primaryColor,
     foregroundColor: whiteColor,
     tapTargetSize: MaterialTapTargetSize.shrinkWrap,

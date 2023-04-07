@@ -4,6 +4,7 @@ class MenuModel {
   final int? id;
   final String? code, name, picture, pictureOri, price;
   final DateTime? createdAt;
+  int? count;
 
   MenuModel({
     this.id,
@@ -13,6 +14,7 @@ class MenuModel {
     this.pictureOri,
     this.price,
     this.createdAt,
+    this.count,
   });
 
   static MenuModel? fromJson(Map<String, dynamic>? json) {

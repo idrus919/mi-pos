@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mi_pos/pages/main/menu.dart';
+import 'package:mi_pos/pages/main/order.dart';
 import 'package:mi_pos/themes.dart';
 
 class MainPage extends StatelessWidget {
@@ -30,8 +31,12 @@ class MainPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Stack(
-          children: [
+          children: const [
             MenuSection(),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: OrderSection(),
+            ),
           ],
         ),
       ),

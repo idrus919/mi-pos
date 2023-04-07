@@ -4,7 +4,6 @@ import 'package:mi_pos/models/menu.dart';
 import 'package:mi_pos/services/utils.dart';
 import 'package:mi_pos/themes.dart';
 import 'package:mi_pos/widgets/image_network.dart';
-import 'package:mi_pos/widgets/inkwell.dart';
 
 class MenuWidget extends StatelessWidget {
   final MenuModel? menu;
@@ -14,14 +13,13 @@ class MenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final price = menu?.price ?? '0';
-    return Container(
-      decoration: BoxDecoration(
-        color: whiteColor,
-        borderRadius: borderRadius(5),
-      ),
-      child: InkWellWidget(
-        onTap: onTap,
-        radius: borderRadius(5),
+    return ClipRRect(
+      borderRadius: borderRadius(5),
+      child: Container(
+        decoration: BoxDecoration(
+          color: whiteColor,
+          borderRadius: borderRadius(5),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -64,7 +62,7 @@ class MenuWidget extends StatelessWidget {
                     ),
                     height(8),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: onTap,
                       child: const Center(child: Text('Order')),
                     ),
                   ],

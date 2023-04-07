@@ -29,12 +29,20 @@ class MenuSection extends StatelessWidget {
               child: GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: list.length,
-                padding: inset(),
+                padding: insetLTRB(
+                  defaultSize,
+                  defaultSize,
+                  defaultSize,
+                  100,
+                ),
                 shrinkWrap: true,
                 clipBehavior: Clip.none,
                 itemBuilder: (context, index) {
                   final menu = list[index];
-                  return MenuWidget(menu: menu, onTap: () {});
+                  return MenuWidget(
+                    menu: menu,
+                    onTap: () => controller.order(menu),
+                  );
                 },
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 150 / 250,
