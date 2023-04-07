@@ -8,6 +8,7 @@ class MainController extends GetxController {
   final loading = false.obs;
   final menus = Rxn<List<MenuModel?>>();
   final orders = <MenuModel?>[].obs;
+  final expand = false.obs;
 
   @override
   void onInit() {
@@ -27,8 +28,8 @@ class MainController extends GetxController {
     final selecteds = orders.where((e) => e?.id == menu?.id).toList();
     if (selecteds.isNotEmpty) {
       final selected = selecteds.first;
-      final count = selected?.count ?? 0;
-      selected?.count = count + 1;
+      final count = (selected?.count ?? 0) + 1;
+      selected?.count = count;
       final index = orders.indexWhere((e) => e?.id == menu?.id);
       orders[index] = selected;
     } else {
@@ -36,6 +37,22 @@ class MainController extends GetxController {
       orders.add(menu);
     }
     orders.refresh();
+  }
+
+  void sub(MenuModel? menu) {
+    final selecteds = orders.where((e) => e?.id == menu?.id).toList();
+    if (selecteds.isNotEmpty) {
+      final selected = selecteds.first;
+      final count = (selected?.count ?? 0) - 1;
+      final index = orders.indexWhere((e) => e?.id == menu?.id);
+      if (count > 0) {
+        selected?.count = count;
+        orders[index] = selected;
+      } else {
+        orders.removeAt(index);
+      }
+      orders.refresh();
+    }
   }
 
   int get totalCharge {
@@ -56,5 +73,9 @@ class MainController extends GetxController {
 
     final counts = orders.map((e) => e?.count ?? 0).toList();
     return counts.reduce((a, b) => a + b);
+  }
+
+  void show() {
+    expand.value = !expand.value;
   }
 }

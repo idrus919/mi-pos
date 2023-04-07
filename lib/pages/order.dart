@@ -6,6 +6,7 @@ import 'package:mi_pos/controller.dart';
 import 'package:mi_pos/services/utils.dart';
 import 'package:mi_pos/themes.dart';
 import 'package:mi_pos/widgets/inkwell.dart';
+import 'package:mi_pos/widgets/order.dart';
 
 class OrderSection extends StatelessWidget {
   const OrderSection({super.key});
@@ -15,7 +16,17 @@ class OrderSection extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        _buildCharge,
+        AnimatedContainer(
+          color: whiteColor,
+          duration: const Duration(milliseconds: 500),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildCharge,
+              Flexible(child: _buildList),
+            ],
+          ),
+        ),
         _buildButtonTop,
       ],
     );
@@ -28,7 +39,6 @@ class OrderSection extends StatelessWidget {
       return Container(
         padding: inset(),
         decoration: const BoxDecoration(
-          color: whiteColor,
           border: Border(
             top: BorderSide(color: primaryColor),
           ),
@@ -94,25 +104,48 @@ class OrderSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 32,
-            height: 32,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: primaryColor,
             ),
             child: InkWellWidget(
-              onTap: () {},
+              onTap: MainController.find.show,
               radius: borderRadius(50),
-              child: const Center(
-                child: Icon(
-                  Icons.keyboard_arrow_up_outlined,
-                  color: whiteColor,
-                ),
+              padding: inset(8),
+              child: const Icon(
+                Icons.keyboard_arrow_up_outlined,
+                color: whiteColor,
+                size: 18,
               ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  Widget get _buildList {
+    final controller = MainController.find;
+    return Obx(() {
+      final orders = controller.orders.value;
+      final expand = controller.expand.value;
+
+      if (!expand) return height(0);
+
+      return ListView.separated(
+        shrinkWrap: true,
+        padding: inset(0),
+        itemBuilder: (context, index) {
+          final order = orders[index];
+          return OrderWidget(
+            order: order,
+            add: () => controller.order(order),
+            sub: () => controller.sub(order),
+          );
+        },
+        separatorBuilder: (context, index) => const Divider(height: 1),
+        itemCount: orders.length,
+      );
+    });
   }
 }

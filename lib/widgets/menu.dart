@@ -38,14 +38,14 @@ class MenuWidget extends StatelessWidget {
                     Expanded(
                       child: Text(
                         menu?.name ?? '',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: Get.textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                     RichText(
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
                       text: TextSpan(
                         style: Get.textTheme.bodySmall,
                         children: [
