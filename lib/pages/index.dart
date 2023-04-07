@@ -10,8 +10,10 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        titleSpacing: 0,
         toolbarHeight: 78,
         title: Container(
+          margin: insetLTRB(16, 0, 0, 0),
           decoration: BoxDecoration(
             border: Border.all(color: darkColor),
             borderRadius: borderRadius(50),
@@ -28,6 +30,12 @@ class MainPage extends StatelessWidget {
             ),
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add_circle_outline, color: primaryColor),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Stack(
