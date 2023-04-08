@@ -13,6 +13,7 @@ class MenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final price = menu?.price ?? '0';
+    debugPrint(price);
     return ClipRRect(
       borderRadius: borderRadius(5),
       child: Container(

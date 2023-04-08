@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mi_pos/pages/menu.dart';
 import 'package:mi_pos/pages/order.dart';
 import 'package:mi_pos/themes.dart';
@@ -19,9 +20,11 @@ class MainPage extends StatelessWidget {
             borderRadius: borderRadius(50),
           ),
           child: TextFormField(
+            style: Get.textTheme.bodyMedium?.copyWith(height: 1),
+            textAlignVertical: TextAlignVertical.center,
             decoration: const InputDecoration(
               hintText: 'Cari menu',
-              prefixIcon: Icon(Icons.search_outlined),
+              prefixIcon: Icon(Icons.search),
               disabledBorder: InputBorder.none,
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
