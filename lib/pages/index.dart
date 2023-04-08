@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mi_pos/controller.dart';
 import 'package:mi_pos/pages/menu.dart';
 import 'package:mi_pos/pages/order.dart';
 import 'package:mi_pos/themes.dart';
@@ -35,7 +36,7 @@ class MainPage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: MainController.find.create,
             icon: const Icon(Icons.add_circle_outline, color: primaryColor),
           ),
         ],

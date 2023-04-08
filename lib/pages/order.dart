@@ -131,21 +131,23 @@ class OrderSection extends StatelessWidget {
       final orders = controller.orders.value;
       final expand = controller.expand.value;
 
-      if (!expand) return height(0);
-
-      return ListView.separated(
-        shrinkWrap: true,
-        padding: inset(0),
-        itemBuilder: (context, index) {
-          final order = orders[index];
-          return OrderWidget(
-            order: order,
-            add: () => controller.order(order),
-            sub: () => controller.sub(order),
-          );
-        },
-        separatorBuilder: (context, index) => const Divider(height: 1),
-        itemCount: orders.length,
+      return Visibility(
+        visible: expand,
+        replacement: height(0),
+        child: ListView.separated(
+          shrinkWrap: true,
+          padding: inset(0),
+          itemBuilder: (context, index) {
+            final order = orders[index];
+            return OrderWidget(
+              order: order,
+              add: () => controller.order(order),
+              sub: () => controller.sub(order),
+            );
+          },
+          separatorBuilder: (context, index) => const Divider(height: 1),
+          itemCount: orders.length,
+        ),
       );
     });
   }

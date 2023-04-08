@@ -97,11 +97,26 @@ ButtonStyle get elevatedButtonStyle {
     elevation: 0,
     minimumSize: Size.zero,
     shadowColor: Colors.transparent,
-    textStyle: const TextStyle(
-      fontSize: 14,
-      fontWeight: FontWeight.w600,
-      color: whiteColor,
-      fontFamily: 'Poppins',
+  );
+}
+
+InputDecoration get inputDecorationBorder {
+  return const InputDecoration(
+    isDense: true,
+    disabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: greyColor, width: 1),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: greyColor, width: 1),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: primaryColor, width: 1),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: redColor, width: 1),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: redColor, width: 1),
     ),
   );
 }

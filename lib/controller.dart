@@ -1,14 +1,15 @@
 import 'package:get/get.dart';
-import 'package:mi_pos/models/menu.dart';
+import 'package:mi_pos/model.dart';
 import 'package:mi_pos/pages/charge.dart';
+import 'package:mi_pos/pages/create.dart';
 import 'package:mi_pos/services/data.dart';
 
 class MainController extends GetxController {
   static MainController get find => Get.find();
 
   final loading = false.obs;
-  final menus = Rxn<List<MenuModel?>>();
-  final orders = <MenuModel?>[].obs;
+  final menus = Rxn<List<Model?>>();
+  final orders = <Model?>[].obs;
   final expand = false.obs;
 
   @override
@@ -19,13 +20,13 @@ class MainController extends GetxController {
 
   Future get() async {
     loading.value = true;
-    await DataService.menus(
+    await DataService.getAll(
       onSuccess: (values) => menus.value = values,
     );
     loading.value = false;
   }
 
-  void order(MenuModel? menu) {
+  void order(Model? menu) {
     final selecteds = orders.where((e) => e?.id == menu?.id).toList();
     if (selecteds.isNotEmpty) {
       final selected = selecteds.first;
@@ -40,7 +41,7 @@ class MainController extends GetxController {
     orders.refresh();
   }
 
-  void sub(MenuModel? menu) {
+  void sub(Model? menu) {
     final selecteds = orders.where((e) => e?.id == menu?.id).toList();
     if (selecteds.isNotEmpty) {
       final selected = selecteds.first;
@@ -86,5 +87,14 @@ class MainController extends GetxController {
       useRootNavigator: true,
       isScrollControlled: true,
     );
+  }
+
+  void create() async {
+    final result = await Get.bottomSheet(
+      const CreatePage(),
+      useRootNavigator: true,
+      isScrollControlled: true,
+    );
+    if (result != null) get();
   }
 }

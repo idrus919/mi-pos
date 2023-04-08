@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mi_pos/controller.dart';
-import 'package:mi_pos/models/menu.dart';
+import 'package:mi_pos/model.dart';
 import 'package:mi_pos/services/currency.dart';
 import 'package:mi_pos/services/utils.dart';
 import 'package:mi_pos/themes.dart';
 import 'package:mi_pos/widgets/order.dart';
 
 class ChargePage extends StatefulWidget {
-  final List<MenuModel?>? orders;
+  final List<Model?>? orders;
   const ChargePage({super.key, this.orders});
 
   @override
@@ -178,6 +178,7 @@ class _ChargePageState extends State<ChargePage> {
                     ),
                     textAlign: TextAlign.end,
                     keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.done,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
                       FilteringTextInputFormatter.deny(

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mi_pos/models/menu.dart';
+import 'package:mi_pos/model.dart';
 import 'package:mi_pos/services/utils.dart';
 import 'package:mi_pos/themes.dart';
 import 'package:mi_pos/widgets/image_network.dart';
 import 'package:mi_pos/widgets/inkwell.dart';
 
 class OrderWidget extends StatelessWidget {
-  final MenuModel? order;
+  final Model? order;
   final VoidCallback? add, sub;
   const OrderWidget({super.key, this.order, this.add, this.sub});
 

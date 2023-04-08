@@ -29,8 +29,11 @@ class ImageNetworkWidget extends StatelessWidget {
           return const Center(child: LoadingWidget());
         },
         errorWidget: (_, __, ___) {
-          return Center(
-            child: Text('no image', style: Get.textTheme.bodySmall),
+          return Container(
+            color: greyColor.withOpacity(0.1),
+            child: Center(
+              child: Text('no image', style: Get.textTheme.bodySmall),
+            ),
           );
         },
       ),

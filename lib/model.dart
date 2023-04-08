@@ -1,12 +1,13 @@
 import 'package:mi_pos/services/utils.dart';
 
-class MenuModel {
+class Model {
   final int? id;
-  final String? code, name, picture, pictureOri, price;
+  final String? picture, pictureOri;
   final DateTime? createdAt;
   int? count;
+  String? code, name, price;
 
-  MenuModel({
+  Model({
     this.id,
     this.code,
     this.name,
@@ -17,12 +18,12 @@ class MenuModel {
     this.count,
   });
 
-  static MenuModel? fromJson(Map<String, dynamic>? json) {
+  static Model? fromJson(Map<String, dynamic>? json) {
     if (json == null) return null;
 
     final price = (json['price'] ?? '').toString();
 
-    return MenuModel(
+    return Model(
       id: json['id'],
       name: json['name'],
       code: json['food_code'],
@@ -31,5 +32,13 @@ class MenuModel {
       price: price.isEmpty ? '0' : price,
       createdAt: Utils.parseDate(json['created_at']),
     );
+  }
+
+  Map<String, dynamic> get toJson {
+    return {
+      'food_code': code,
+      'name': name,
+      'price': price,
+    };
   }
 }
